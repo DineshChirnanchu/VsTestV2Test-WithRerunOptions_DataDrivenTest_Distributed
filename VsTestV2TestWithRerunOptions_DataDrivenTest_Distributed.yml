@@ -13,8 +13,14 @@ jobs:
       versionSelector: 'latestPreRelease'
   - task: VSTest@2
     inputs:  
-      testSelector: 'testAssemblies'     
-      testAssemblyVer2: '**/*StackOverflow*.dll'
+      testSelector: 'testAssemblies'  
+      testAssemblyVer2: '**/*DataDrivenUT*.dll'
       searchFolder: '$(System.DefaultWorkingDirectory)\bin\Debug\'
+      batchingBasedOnAgentsOption: 'customBatchSize'
+      customBatchSizeValue: 10
+      rerunFailedTests: true    
+      rerunType: 'basedOnTestFailureCount'
+      basedOnTestFailureCount: 5
+      rerunMaxAttempts: 3   
       vsTestVersion: 'toolsInstaller'
-      diagnosticsEnabled: true
+
